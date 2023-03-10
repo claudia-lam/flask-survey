@@ -13,10 +13,7 @@ responses = []
 @app.get('/')
 def display_survey_start():
     """display root page with title, instructions, and start survey button"""
-    return render_template('survey_start.html',
-                           title=survey.title,
-                           instructions=survey.instructions
-                           )
+    return render_template('survey_start.html', current_survey=survey)
 
 @app.post('/begin')
 def redirect_to_question():
@@ -26,9 +23,8 @@ def redirect_to_question():
 
 @app.get('/questions/<int:id>')
 def questions_survey(id):
-    """display survey question with answer submissions""" #with answer options
+    """display survey question with answer options"""
 
-    # id = int(id)
     return render_template('question.html',
                            question=survey.questions[id])
 
