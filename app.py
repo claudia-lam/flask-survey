@@ -27,6 +27,12 @@ def redirect_to_question():
 def questions_survey(id):
     """display survey question with answer options"""
 
+    if len(session["responses"]) == len(survey.questions):
+        return redirect('/completion')
+
+    if id != len(session["responses"]):
+        return redirect(f'/questions/{len(session["responses"])}')
+
     return render_template('question.html',
                            question=survey.questions[id])
 
